@@ -1,24 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import GoogleLogin from 'react-google-login';
 import './App.css';
 
 function App() {
+  const [tokenID, setTokenID] = useState('');
+  const [id_token, setIDToken] = useState('');
+
+  const responseGoogle = (response) => {
+    setTokenID(response.tokenId);
+    setIDToken(response.tokenObj.id_token);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1> Login With Google </h1>
+      <GoogleLogin
+        clientId="995478869107-s0m002cncatnfo7rjtefchq9hird88n6.apps.googleusercontent.com"
+        buttonText="Login"
+        onSuccess={responseGoogle}
+        onFailure={responseGoogle}
+        cookiePolicy={'single_host_origin'}
+      />
+      <hr />
+      <h1>TokenID:{tokenID}</h1>
+      <hr />
+      <h2>Id_Token:{id_token}</h2>
+
+      <div></div>
     </div>
   );
 }
