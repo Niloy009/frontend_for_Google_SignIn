@@ -4,11 +4,11 @@ import './App.css';
 
 function App() {
   const [tokenID, setTokenID] = useState('');
-  const [id_token, setIDToken] = useState('');
+  const [idtoken, setIDToken] = useState('');
 
   const responseGoogle = (response) => {
     setTokenID(response.tokenId);
-    setIDToken(response.tokenObj.id_token);
+    setIDToken(response?.tokenObj?.id_token);
   };
 
   return (
@@ -24,7 +24,7 @@ function App() {
       <hr />
       <h1>TokenID:{tokenID}</h1>
       <hr />
-      <h2>Id_Token:{id_token}</h2>
+      <h2>IdToken:{idtoken}</h2>
 
       <div></div>
     </div>
